@@ -1,19 +1,7 @@
 <h1><%= @book.title %></h1>
 <h1><%= "by #{@book.author}"  %></h1>
 <h1><%= "*" * @book.rating %></h1>
-
-
-
+<h3><%= @book.have_read ? "You have read this book" : "You have not read this book" %></h3>
 
 <h2><%= link_to "Edit this book", edit_book_path %></h2>
-
-
-
-
-
-
-
-
-
-
 <h2><%= link_to "Back to my bookshelf", books_path %></h2>

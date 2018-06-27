@@ -1,3 +1,4 @@
 class Book < ApplicationRecord
-  validates :title, :author, :rating, presence: true
+  validates :title, :author, presence: true
+  has_many :comments, dependent: :destroy
 end

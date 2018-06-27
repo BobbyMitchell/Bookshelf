@@ -24,7 +24,8 @@ class BooksController < ApplicationController
   end
 
   def update
-
+    Book.update(book_params)
+    redirect_to book_path(@book)
   end
 
   def destroy

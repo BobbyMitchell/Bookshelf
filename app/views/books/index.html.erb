@@ -1,0 +1,8 @@
+<h1>My Bookshelf....</h1>
+
+<h2><% @books.each do |book| %></h2>
+<h2><%= book.title %></h2>
+<h2><%= book.author %></h2>
+<h2><%= "*" * book.rating %></h2>
+<h3><%= book.have_read ? "You have read this book" : "You have not read this book" %></h3>
+<% end %>

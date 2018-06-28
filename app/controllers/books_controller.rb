@@ -14,8 +14,13 @@ class BooksController < ApplicationController
   end
 
   def create
-    Book.create(book_params)
+    @book = Book.new(book_params)
+    #if statement so if book does not meet validations it does not lose data
+    if @book.save
     redirect_to books_path
+  else
+    render :new
+  end
 
   end
 
@@ -24,8 +29,11 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book.update(book_params)
-    redirect_to book_path(@book)
+    if @book.update(book_params)
+      redirect_to book_path(@book)
+    else
+      render :new
+    end
   end
 
   def destroy

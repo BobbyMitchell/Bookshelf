@@ -3,5 +3,8 @@
 <h1><%= "*" * @book.rating %></h1>
 <h3><%= @book.have_read ? "You have read this book" : "You have not read this book" %></h3>
 
+<% @book.comments.each do |comment| %></h3>
+<h3><%= comment.content %></h3>
+<% end %>
 <h2><%= link_to "Edit this book", edit_book_path %></h2>
 <h2><%= link_to "Back to my bookshelf", books_path %></h2>

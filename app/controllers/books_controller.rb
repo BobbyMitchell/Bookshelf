@@ -10,11 +10,13 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.create
+    @user = current_user
+    @book = Book.new
   end
 
   def create
     @book = Book.new(book_params)
+    @book.user = current_user
     #if statement so if book does not meet validations it does not lose data
     if @book.save
     redirect_to books_path
@@ -46,7 +48,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :rating, :have_read)
+    params.require(:book).permit(:title, :author, :rating, :have_read, :genre, :user_id)
   end
   def find_book
     @book = Book.find(params[:id])

@@ -2,6 +2,11 @@ class BooksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :find_book, only: [:show, :edit, :update, :destroy]
 
+
+  def my_books
+    @my_books = Book.where(user: current_user )
+  end
+
   def index
     @books = Book.all
   end

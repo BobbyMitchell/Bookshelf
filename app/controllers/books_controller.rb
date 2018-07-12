@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf]
+  before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf, :remove_from_my_bookshelf]
 
 
   def my_books
@@ -9,6 +9,11 @@ class BooksController < ApplicationController
 
   def add_to_my_bookshelf
     current_user.books << @book
+    redirect_to book_path
+  end
+
+  def remove_from_my_bookshelf
+    current_user.books.delete(@book)
     redirect_to book_path
   end
 

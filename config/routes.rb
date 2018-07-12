@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
     member do
       get "add_to_my_bookshelf"
+      get "remove_from_my_bookshelf"
     end
 
   resources :comments, only:[:new, :create]

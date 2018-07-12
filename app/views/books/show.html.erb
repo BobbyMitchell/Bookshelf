@@ -3,7 +3,7 @@
 <h2><%= @book.genre %></h2>
 <h1><%= "*" * @book.rating %></h1>
 <h2><%= link_to "add_to_my_bookshelf", add_to_my_bookshelf_book_path(@book) %></h2>
-
+<h2><%= link_to "remove_from_my_bookshelf", remove_from_my_bookshelf_book_path(@book) %></h2>
 <h3><%= @book.have_read ? "You have read this book" : "You have not read this book" %></h3>
 
 <% @book.comments.each do |comment| %></h3>

@@ -1,10 +1,15 @@
 class BooksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_book, only: [:show, :edit, :update, :destroy]
+  before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf]
 
 
   def my_books
     @my_books = current_user.books
+  end
+
+  def add_to_my_bookshelf
+    current_user.books << @book
+    redirect_to book_path
   end
 
   def index

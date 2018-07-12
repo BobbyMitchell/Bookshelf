@@ -4,9 +4,14 @@ Rails.application.routes.draw do
  resources :books do
   collection do
     get "my_books", to: "books#my_books"
-  end
+    end
+    member do
+      get "add_to_my_bookshelf"
+    end
+
   resources :comments, only:[:new, :create]
  end
+
 
  root to: "books#index"
 end

@@ -2,19 +2,23 @@
 <h1><%= "by #{@book.author}"  %></h1>
 <h2><%= @book.genre %></h2>
 <h1><%= "*" * @book.rating %></h1>
+
+<!-- if statement so if the book can only be added if it's not in the bookshelf -->
 <h2><% if current_user.books.include? @book  %></h2>
- <h2><%= link_to "remove_from_my_bookshelf",remove_from_my_bookshelf_book_path(@book) %></h2>
+<h2><%= link_to "remove_from_my_bookshelf",remove_from_my_bookshelf_book_path(@book) %></h2>
+<% else %>
+<%= link_to "add_to_my_bookshelf", add_to_my_bookshelf_book_path(@book)%></h2>
+<% end %>
 
- <% else %>
- <%= link_to "add_to_my_bookshelf", add_to_my_bookshelf_book_path(@book)%></h2>
- <% end %>
+<h2><% @book.user.each do |user| %></h2>
+<h2><%= user.email %></h2>
+<% end %>
 
-
- <h3><%= @book.have_read ? "You have read this book" : "You have not read this book" %></h3>
-
- <% @book.comments.each do |comment| %></h3>
- <h3><%= comment.content %></h3>
- <% end %>
- <h2><%= link_to "Review this book", new_book_comment_path(@book) %></h2>
- <h2><%= link_to "Edit this book", edit_book_path %></h2>
- <h2><%= link_to "Back to my bookshelf", books_path %></h2>
+<h3><%= @book.have_read ? "You have read this book" : "You have not read this book" %></h3>
+<% @book.comments.each do |comment| %></h3>
+<h3><%= comment.content %></h3>
+<% end %>
+<h2><%= link_to "Review this book", new_book_comment_path(@book) %></h2>
+<h2><%= link_to "Edit this book", edit_book_path %></h2>
+<h2><%= link_to "Back to Library", books_path %></h2>
+<h2> <%= link_to "My Bookshelf", my_books_books_path %> </h2>

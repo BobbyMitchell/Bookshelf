@@ -1,7 +1,9 @@
 <h1>My Bookshelf</h1>
 
 <% @my_books.each do |book| %>
-<h1><%= book.title %></h1>
-<h1><%= book.rating %></h1>
+<h2><%= link_to book.title, book_path(book)%></h2>
+<h2><%= book.author %></h2>
+<h2><%= "*" * book.rating %></h2>
 <% end %>
-<%= link_to "Back to all books", books_path %>
+
+<h2><%= link_to "Back to Library", books_path %></h2>

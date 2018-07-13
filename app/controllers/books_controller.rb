@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf, :remove_from_my_bookshelf]
 
 
+#My_bookshelf
   def my_books
     @my_books = current_user.books
   end
@@ -17,6 +18,7 @@ class BooksController < ApplicationController
     redirect_to book_path
   end
 
+#Library
   def index
     @books = Book.all
   end

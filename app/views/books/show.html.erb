@@ -10,7 +10,7 @@
 <%= link_to "add_to_my_bookshelf", add_to_my_bookshelf_book_path(@book)%></h2>
 <% end %>
 
-<h2><% @book.user.each do |user| %></h2>
+<h2><% @book.users do |user| %></h2>
 <h2><%= user.email %></h2>
 <% end %>
 

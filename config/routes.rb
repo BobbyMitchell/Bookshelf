@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   collection do
     get "my_books", to: "books#my_books"
     end
-    member do
-      get "add_to_my_bookshelf"
-      get "remove_from_my_bookshelf"
-    end
+  member do
+    get "add_to_my_bookshelf", to: "books#add_to_my_bookshelf"
+    get "remove_from_my_bookshelf", to: "books#remove_from_my_bookshelf"
+  end
+
 
   resources :comments, only:[:new, :create]
  end
-
 
  root to: "books#index"
 end

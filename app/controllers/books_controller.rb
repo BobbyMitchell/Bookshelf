@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf, :remove_from_my_bookshelf]
 
 
-#My_bookshelf
+#My_bookshelf adds and removes books from bookshelf
   def my_books
     @my_books = current_user.books
   end
@@ -16,6 +16,11 @@ class BooksController < ApplicationController
   def remove_from_my_bookshelf
     current_user.books.delete(@book)
     redirect_to book_path
+  end
+
+# My_reading_list
+  def my_reading_list
+    @my_reading_list = current_user.user_books.where(have_or_want: true)
   end
 
 #Library
@@ -73,3 +78,4 @@ class BooksController < ApplicationController
   end
 
 end
+

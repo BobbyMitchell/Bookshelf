@@ -4,6 +4,7 @@ Rails.application.routes.draw do
  resources :books do
   collection do
     get "my_books", to: "books#my_books"
+    get "my_reading_list", to: "books#my_reading_list"
     end
   member do
     get "add_to_my_bookshelf", to: "books#add_to_my_bookshelf"

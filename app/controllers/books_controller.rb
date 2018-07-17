@@ -18,9 +18,9 @@ class BooksController < ApplicationController
     redirect_to book_path
   end
 
-# My_reading_list
+# my_reading_list returns user_books not books
   def my_reading_list
-    @my_reading_list = current_user.user_books.where(have_or_want: true)
+    @my_reading_list = current_user.user_books.where(have_or_want: false)
   end
 
 #Library
@@ -41,7 +41,9 @@ class BooksController < ApplicationController
     #@book.user = current_user
     #if statement so if book does not meet validations it does not lose data
     if @book.save
-      current_user.books << @book
+      book_user = UserBook.create(book: @book, user: current_user, have_or_want: @book.have_read)
+     # @book.user_books.have_or_want = @book.have_read
+      #current_user.books << @book
     redirect_to books_path
   else
     render :new

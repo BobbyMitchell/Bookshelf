@@ -36,7 +36,7 @@ class BooksController < ApplicationController
     #@book.user = current_user
     #if statement so if book does not meet validations it does not lose data
     if @book.save
-      current_user.books << @book
+      # current_user.books << @book
     redirect_to books_path
   else
     render :new

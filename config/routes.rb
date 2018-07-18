@@ -12,10 +12,9 @@ Rails.application.routes.draw do
     get "add_to_my_reading_list", to: "books#add_to_my_reading_list"
     get "remove_from_my_bookshelf", to: "books#remove_from_my_bookshelf"
   end
-
-
   resources :comments, only:[:new, :create]
  end
+  resources :user_books
 
  root to: "books#index"
 end

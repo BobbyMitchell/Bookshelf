@@ -17,7 +17,16 @@
 <%= f.select :genre, ['Sci-fi', 'Fantasy', 'other'] %>
 <%= f.label :rating, "Enter rating" %>
 <%= f.text_field :rating %>
-<%= f.label "I have read this book" %>
-<%= f.check_box :have_read %>
+  <table>
+        <tr>
+            <td><%= f.label 'have_read', 'Add to My Bookshelf' %></td>
+            <td><%= f.radio_button :have_read, true %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.label 'have_read', 'Add to My Reading list' %></td>
+            <td><%= f.radio_button :have_read, false %></td>
+        </tr>
+    </table>
 <%= f.submit %>
 <% end %>

@@ -6,6 +6,10 @@ class UserBooksController < ApplicationController
     @my_books = current_user.user_books.where(have_or_want: true)
   end
 
+  def my_reading_list
+    @my_books = current_user.user_books.where(have_or_want: false)
+  end
+
   #not needed
   def show
 

@@ -14,7 +14,13 @@ Rails.application.routes.draw do
   end
   resources :comments, only:[:new, :create]
  end
-  resources :user_books
 
+
+  resources :user_books do
+  collection do
+    get "my_reading_list", to: "user_books#my_reading_list"
+    end
+end
  root to: "books#index"
 end
+

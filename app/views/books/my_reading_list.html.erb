@@ -1,4 +1,4 @@
-<h1>My Bookshelf</h1>
+<h1>My Reading List</h1>
 
 <% @my_reading_list.each do |user_book| %>
 <h2><%= link_to user_book.book.title, book_path(user_book.book)%></h2>

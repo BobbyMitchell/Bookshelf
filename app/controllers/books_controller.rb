@@ -1,53 +1,70 @@
 class BooksController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf, :remove_from_my_bookshelf]
+  before_action :find_book, only: [:show, :edit, :update, :destroy, :add_to_my_bookshelf, :remove_from_my_bookshelf, :add_to_my_reading_list, :remove_from_my_reading_list]
 
 
 #My_bookshelf adds and removes books from bookshelf
-  def my_books
-    @my_books = current_user.books
-  end
+ def my_books
+   @my_books = current_user.books
+ end
 
-  def add_to_my_bookshelf
-    current_user.books << @book
-    redirect_to book_path
-  end
-
-  def remove_from_my_bookshelf
+ def add_to_my_bookshelf
     current_user.books.delete(@book)
-    redirect_to book_path
-  end
+    @book.have_read = true
+    userbook = UserBook.create(book: @book, user: current_user, have_or_want: true)
+   redirect_to book_path
+ end
+
+ def remove_from_my_bookshelf
+   current_user.books.delete(@book)
+   @book.have_read = false
+   redirect_to book_path
+ end
 
 # my_reading_list returns user_books not books
-  def my_reading_list
-    @my_reading_list = current_user.user_books.where(have_or_want: false)
-  end
+ def my_reading_list
 
-#Library
-  def index
-    @books = Book.all
-  end
+   @my_reading_list = current_user.user_books.where(have_or_want: false)
 
-  def show
-  end
+ end
 
-  def new
+ def add_to_my_reading_list
+  current_user.books.delete(@book)
+  userbook = UserBook.create(book: @book, user: current_user, have_or_want: false)
+  @book.have_read = false
+  @book.save
+   redirect_to book_path
+ end
+
+ def remove_from_my_reading_list
+    current_user.books.delete(@book)
+   redirect_to book_path
+ end
+
+
+
+def index
+  @books = Book.all
+end
+
+def show
+end
+
+def new
     #@user = current_user
     @book = Book.new
   end
 
   def create
     @book = Book.new(book_params)
-    #@book.user = current_user
     #if statement so if book does not meet validations it does not lose data
     if @book.save
+      #creates the user_books object
       book_user = UserBook.create(book: @book, user: current_user, have_or_want: @book.have_read)
-     # @book.user_books.have_or_want = @book.have_read
-      #current_user.books << @book
-    redirect_to books_path
-  else
-    render :new
-  end
+      redirect_to books_path
+    else
+      render :new
+    end
 
   end
 

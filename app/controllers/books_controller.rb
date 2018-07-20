@@ -5,7 +5,7 @@ class BooksController < ApplicationController
 
 #My_bookshelf adds and removes books from bookshelf
  def my_books
-   @my_books = current_user.books
+   @my_books = current_user.user_books.where(have_or_want: true)
  end
 
  def add_to_my_bookshelf
@@ -48,6 +48,7 @@ def index
 end
 
 def show
+  @user_book = UserBook.new
 end
 
 def new

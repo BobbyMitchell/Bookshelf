@@ -1,7 +1,7 @@
 <h1>My Reading List</h1>
 
 <% @my_reading_list.each do |user_book| %>
-<h2><%= link_to user_book.book.title, my_reading_list_books_path%></h2>
+<h2><%= link_to user_book.book.title, book_path(user_book.book)%></h2>
 <h2><%= user_book.book.author %></h2>
 <h2><%= "*" * user_book.book.rating %></h2>
 <% end %>

@@ -31,19 +31,6 @@ class UserBooksController < ApplicationController
     redirect_to book_path(@book)
   end
 
-  # def create
-  #   @spaceship = Spaceship.find(params[:spaceship_id])
-  #   @booking = Booking.new(booking_params)
-  #   @booking.spaceship_id = @spaceship.id
-  #   @booking.user = current_user
-  #   @booking.total_price = ((@booking.end_date - @booking.start_date).to_i * @spaceship.price)
-  #   if @booking.save
-  #     render :show
-  #   else
-  #     redirect_to spaceship_path(@spaceship)
-  #   end
-  # end
-  #to find book which is to be updated
   def edit
 
   end

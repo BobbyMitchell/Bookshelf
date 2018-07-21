@@ -39,7 +39,7 @@ class UserBooksController < ApplicationController
 
   #when book is changed from reading list to bookshelf
   def update
-
+    @user_book = UserBook.find(params[:id])
   end
 
 

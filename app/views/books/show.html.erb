@@ -23,7 +23,7 @@
 
 <!-- If is is on the reading list you can add to bookshelf(changes have_or_want to true) or can remove from reading list (delete user_book instance) -->
 
-<%= simple_form_for [@book, @user_book] do |f| %>
+<%= simple_form_for [@book, @user_book], url: book_user_books_path(@book, @user_book), method: :post  do |f| %>
 <%= f.input :have_or_want %>
 <%= f.submit "Submit" %>
 <% end %>

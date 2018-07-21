@@ -12,6 +12,7 @@ class BooksController < ApplicationController
     current_user.books.delete(@book)
     @book.have_read = true
     userbook = UserBook.create(book: @book, user: current_user, have_or_want: true)
+   raise
    redirect_to book_path
  end
 
@@ -70,7 +71,7 @@ def new
   end
 
   def edit
-
+``
   end
 
   def update

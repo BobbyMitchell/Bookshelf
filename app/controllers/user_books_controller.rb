@@ -28,11 +28,13 @@ class UserBooksController < ApplicationController
     @user_book.book_id = @book.id
     @user_book.user = current_user
     @user_book.save
+    destroy_multiple
     redirect_to book_path(@book)
   end
 
   def edit
-
+     @user_book = UserBook.find(params[:id])
+     raise
   end
 
   #when book is changed from reading list to bookshelf
@@ -43,7 +45,8 @@ class UserBooksController < ApplicationController
 
   #when book is removed from bookcase
   def destroy
-
+    @user_book = UserBook.find(params[:id])
+    @user_book.destroy
   end
 
   private
@@ -52,6 +55,14 @@ class UserBooksController < ApplicationController
     params.require(:user_book).permit(:book_id, :have_or_want)
   end
 
+  def destroy_multiple
+    user_book_array = current_user.user_books.where(user: current_user, book: @book)
+    if user_book_array.length == 2
+      x = user_book_array.first
+      x.destroy
+    else
+    end
+  end
 
 
 end

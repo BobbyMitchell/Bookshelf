@@ -10,14 +10,16 @@
 
 
 <!-- this form is for when there is no user_book and adds to either reading list or bookshelf -->
-<%= simple_form_for [@book, @user_book] do |f| %>
-<%= f.input :have_or_want,
-:collection => [[true, 'Add to Bookshelf'], [false, 'Add to resding list']],
-:label_method => :last,
-:value_method => :first,
-:as => :radio_buttons %>
-<%= f.submit "Submit" %>
+<%= simple_form_for [@book, @user_book], url: book_user_books_path(@book, @user_book), method: :pu  do |f| %>
+<%= f.input :have_or_want, :as => :hidden, :label => 'Remove this book from bookshelf', :input_html => { :value => true } %>
+<%= f.submit "Move to Bookcase" %>
 <% end %>
+
+<%= simple_form_for [@book, @user_book], url: book_user_books_path(@book, @user_book), method: :pu  do |f| %>
+<%= f.input :have_or_want, :as => :hidden, :label => 'Remove this book from bookshelf', :input_html => { :value => false } %>
+<%= f.submit "Add to Reading list" %>
+<% end %>
+
 
 <% elsif @book.user_books[0].have_or_want == false %>
 

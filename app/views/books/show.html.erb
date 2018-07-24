@@ -3,20 +3,12 @@
 <h2><%= @book.genre %></h2>
 <h1><%= "*" * @book.rating %></h1>
 
-<!-- if statement so if the book can only be added if it's not in the bookshelf -->
-<h2><% if current_user.books.exclude? @book  %></h2>
+<%= render "user_book_form" %>
 
-<!-- If the book is not on the bookshelf or on the reading list you can add it to either -->
-<h2><%= link_to "add_to_my_bookshelf",add_to_my_bookshelf_book_path(@book) %></h2>
-<h2><%= link_to "add_to_my_reading_list",add_to_my_reading_list_book_path(@book) %></h2>
-<!-- If is is on the reading list you can add to bookshelf(changes have_or_want to true) or can remove from reading list (delete user_book instance) -->
-<% elsif  @book.have_read = false %>
 
-<%= link_to "add_to_my_bookshelf", add_to_my_bookshelf_book_path(@book)%></h2>
 
-<% else %>
-  <%= link_to "Remove from Bookshelf", remove_from_my_bookshelf_book_path(@book) %>
-<% end %>
+
+
 
 <h2><% @book.users do |user| %></h2>
 <h2><%= user.email %></h2>

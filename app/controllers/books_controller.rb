@@ -5,41 +5,42 @@ class BooksController < ApplicationController
 
 #My_bookshelf adds and removes books from bookshelf
  def my_books
-   @my_books = current_user.books
+   @my_books = current_user.user_books.where(have_or_want: true)
  end
+#These methods are now covered by the user_books controller
+ # def add_to_my_bookshelf
+ #    current_user.books.delete(@book)
+ #    @book.have_read = true
+ #    userbook = UserBook.create(book: @book, user: current_user, have_or_want: true)
+ #   raise
+ #   redirect_to book_path
+ # end
 
- def add_to_my_bookshelf
-    current_user.books.delete(@book)
-    @book.have_read = true
-    userbook = UserBook.create(book: @book, user: current_user, have_or_want: true)
-   redirect_to book_path
- end
-
- def remove_from_my_bookshelf
-   current_user.books.delete(@book)
-   @book.have_read = false
-   redirect_to book_path
- end
+ # def remove_from_my_bookshelf
+ #   current_user.books.delete(@book)
+ #   @book.have_read = false
+ #   redirect_to book_path
+ # end
 
 # my_reading_list returns user_books not books
+ # def add_to_my_reading_list
+ #  current_user.books.delete(@book)
+ #  userbook = UserBook.create(book: @book, user: current_user, have_or_want: false)
+ #  @book.have_read = false
+ #  @book.save
+ #   redirect_to book_path
+ # end
+
+ # def remove_from_my_reading_list
+ #    current_user.books.delete(@book)
+ #   redirect_to book_path
+ # end
  def my_reading_list
 
    @my_reading_list = current_user.user_books.where(have_or_want: false)
 
  end
 
- def add_to_my_reading_list
-  current_user.books.delete(@book)
-  userbook = UserBook.create(book: @book, user: current_user, have_or_want: false)
-  @book.have_read = false
-  @book.save
-   redirect_to book_path
- end
-
- def remove_from_my_reading_list
-    current_user.books.delete(@book)
-   redirect_to book_path
- end
 
 
 
@@ -48,6 +49,7 @@ def index
 end
 
 def show
+  @user_book = UserBook.new
 end
 
 def new
@@ -69,7 +71,7 @@ def new
   end
 
   def edit
-
+``
   end
 
   def update
